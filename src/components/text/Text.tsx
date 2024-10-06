@@ -1,9 +1,9 @@
-import { fonts, sizes } from '@/config/fonts';
+import { sizes } from '@/config/fonts';
 import { CustomTextProps } from '@/types';
-import { FontSize } from '@/utils/dimensions';
-import { useTheme, Text } from '@/utils/packages';
+import { Text, useTheme } from '@/utils/packages';
+import { Poppins_400Regular, Poppins_600SemiBold, useFonts } from '@expo-google-fonts/poppins';
 import * as React from 'react';
-import { TextStyle } from 'react-native';
+import { ActivityIndicator, TextStyle } from 'react-native';
 
 const CustomText: React.FC<CustomTextProps> = ({
   h1,
@@ -21,10 +21,19 @@ const CustomText: React.FC<CustomTextProps> = ({
   onPress,
   ...rest
 }) => {
-  const fontFamily = bold ? fonts.bold : fonts.regular;
-  const fontWeight = bold ? '600' : '400';
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+  });
   const { colors } = useTheme();
+  const fontFamily = bold ? 'Poppins_600SemiBold' : 'Poppins_400Regular';
   let textStyle: TextStyle = {};
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="small" color={colors.text} />;
+  }
+
+
 
   if (h1) {
     textStyle = { fontSize: sizes.h1, ...h1Style };
@@ -41,12 +50,13 @@ const CustomText: React.FC<CustomTextProps> = ({
   return (
     <Text
       style={[
-        { fontFamily: fontFamily, fontWeight: fontWeight, color: colors.text },
+        { fontFamily, color: colors.text },
         textStyle,
         style,
       ]}
       onPress={onPress}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </Text>
   );

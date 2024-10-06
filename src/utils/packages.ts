@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useDispatch, useSelector } from "react-redux";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export {
   moment,
@@ -26,7 +27,7 @@ export {
   useNavigation,
   useTheme,
   createBottomTabNavigator,
-
+  createNativeStackNavigator,
   // @react-native-async-storage/async-storage
   AsyncStorage,
 

@@ -6,7 +6,7 @@ export const themeLight = {
     primary: colors.primaryBlue,
     secondary: colors.lightprimary,
     background: colors.white,
-    background2: colors.gray7,
+    background2: colors.gray8,
     card: colors.white,
     text: colors.gray5,
     border: colors.gray2,

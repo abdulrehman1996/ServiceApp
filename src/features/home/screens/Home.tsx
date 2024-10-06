@@ -17,12 +17,14 @@ import AllServicesRender from "../components/home/AllServicesRender";
 import ComponentHeader from "../components/home/ComponentHeader";
 import FeatureServicesRender from "../components/home/FeatureServicesRender";
 import { ThemeColors } from "@/types";
+import Header from "@/components/header";
 
 const Home = () => {
     const { colors } = useTheme() as { colors: Partial<ThemeColors> }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+            <Header title="" leftComponent={<></>} />
             <ScrollView
                 style={[styles.innerContainer, { backgroundColor: colors.background }]}
             >
@@ -34,7 +36,7 @@ const Home = () => {
                         </Text>
                     </View>
                     <View style={styles.iconContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity activeOpacity={.7}>
                             <Icon
                                 name="bell"
                                 type="feather"
@@ -43,7 +45,7 @@ const Home = () => {
                                 color={colors.text}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity activeOpacity={.7}>
                             <Icon
                                 name="bookmark-minus-outline"
                                 type="material-community"
@@ -79,19 +81,19 @@ const Home = () => {
                         }}
                     />
                 </View>
-                <View style={{ backgroundColor: colors.background2 }}>
-                    <FlatList
-                        data={SERVICES_DATA}
-                        scrollEnabled={false}
-                        showsVerticalScrollIndicator={false}
-                        keyExtractor={(_, i) => i.toString()}
-                        numColumns={2}
-                        columnWrapperStyle={{ justifyContent: 'space-between' }}
-                        renderItem={({ item }) => <AllServicesRender item={item} />}
-                    />
-                </View>
+                {/* <View style={{ backgroundColor: colors.background2 }}> */}
+                <FlatList
+                    data={SERVICES_DATA}
+                    scrollEnabled={false}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={(_, i) => i.toString()}
+                    numColumns={2}
+                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                    renderItem={({ item }) => <AllServicesRender item={item} />}
+                />
+                {/* </View> */}
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 

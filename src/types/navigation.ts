@@ -13,6 +13,7 @@ export type RootStackParamList = {
 };
 export type HomeStackParamList = {
   Home: undefined;
+  ServiceDetail: undefined;
 };
 export type CartStackParamList = {
   Cart: undefined;

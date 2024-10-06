@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "BeautyApp",
-    "slug": "BeautyApp",
+    "slug": "beautyapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,10 +18,18 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.yahya10shoaib.beautyapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "32e905a5-e719-499d-9dcd-55885751995c"
+      }
+    },
+    "owner": "yahya10shoaib",
+    "plugins": ["expo-font"]
   }
 }

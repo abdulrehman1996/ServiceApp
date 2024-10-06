@@ -17,14 +17,14 @@ const ComponentHeader = (props: ComponentHeaderProps) => {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginVertical: 20,
+                marginVertical: 15,
             }}
         >
-            <Text h2 bold>
+            <Text h3 bold>
                 {label}
             </Text>
             <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-                <Text h2 bold style={{ color: colors.border }}>
+                <Text h3 bold style={{ color: colors.border }}>
                     See All
                 </Text>
             </TouchableOpacity>

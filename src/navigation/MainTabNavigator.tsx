@@ -1,29 +1,47 @@
 import React from "react";
 import { createBottomTabNavigator, Icon, useTheme } from "@/utils/packages";
-import { CartStackNavigator, HomeStackNavigator, ProfileStackNavigator } from "./RootNavigator";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { FontSize } from "@/utils/dimensions";
 import { Text } from "@/components/text";
 import { ThemeColors } from "@/types";
 import { useSelector } from "react-redux";
+import HomeStackNavigator from "./HomeStackNavigator";
+import CartStackNavigator from "./CartStackNavigator";
+import ProfileStackNavigator from "./ProfileStackNavigator";
 
 function MainTabNavigator() {
   const Tab = createBottomTabNavigator();
-  const { colors } = useTheme() as { colors: Partial<ThemeColors> }
+  const { colors } = useTheme() as { colors: Partial<ThemeColors> };
   const cartItems = useSelector((state: any) => state.cart.cartItems);
   const tabBarIconView = (color, label) => {
     return (
       <View style={styles.main}>
         <Icon
-          name={label == "Home" ? "home-filled" : label == "Explore" ? "search" : label == "Cart" ? "shoppingcart" : "user"}
-          type={label == "Home" ? "material" : label == "Explore" ? "octicon" : label == "Cart" ? "antdesign" : "feather"}
+          name={
+            label == "Home"
+              ? "home-filled"
+              : label == "Explore"
+                ? "search"
+                : label == "Cart"
+                  ? "shoppingcart"
+                  : "user"
+          }
+          type={
+            label == "Home"
+              ? "material"
+              : label == "Explore"
+                ? "octicon"
+                : label == "Cart"
+                  ? "antdesign"
+                  : "feather"
+          }
           size={FontSize(30)}
           color={color}
         />
         <Text style={{ color: color, marginTop: 5 }}>{label}</Text>
       </View>
-    )
-  }
+    );
+  };
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -39,7 +57,6 @@ function MainTabNavigator() {
         // tabBarActiveBackgroundColor:colors.primary,
         // tabBarInactiveBackgroundColor:'#fff',
         // tabBarLabelStyle:{fontSize:12,fontFamily:fonts.bold},
-
       })}
     // tabBarOptions={{
 
@@ -51,7 +68,8 @@ function MainTabNavigator() {
         component={HomeStackNavigator}
         options={{
           unmountOnBlur: true,
-          tabBarIcon: ({ color, size, focused }) => tabBarIconView(color, "Home")
+          tabBarIcon: ({ color, size, focused }) =>
+            tabBarIconView(color, "Home"),
         }}
       />
       <Tab.Screen
@@ -59,23 +77,30 @@ function MainTabNavigator() {
         component={HomeStackNavigator}
         options={{
           unmountOnBlur: true,
-          tabBarIcon: ({ color, size, focused }) => tabBarIconView(color, "Explore")
+          tabBarIcon: ({ color, size, focused }) =>
+            tabBarIconView(color, "Explore"),
         }}
       />
-      <Tab.Screen name="Cart" component={CartStackNavigator}
+      <Tab.Screen
+        name="Cart"
+        component={CartStackNavigator}
         options={{
           tabBarBadge: cartItems.length,
           tabBarBadgeStyle: {
             backgroundColor: colors.error,
           },
           unmountOnBlur: true,
-          tabBarIcon: ({ color, size, focused }) => tabBarIconView(color, "Cart")
+          tabBarIcon: ({ color, size, focused }) =>
+            tabBarIconView(color, "Cart"),
         }}
       />
-      <Tab.Screen name="Profile" component={ProfileStackNavigator}
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStackNavigator}
         options={{
           unmountOnBlur: true,
-          tabBarIcon: ({ color, size, focused }) => tabBarIconView(color, "Profile")
+          tabBarIcon: ({ color, size, focused }) =>
+            tabBarIconView(color, "Profile"),
         }}
       />
     </Tab.Navigator>
@@ -84,12 +109,11 @@ function MainTabNavigator() {
 
 export default MainTabNavigator;
 
-
 const styles = StyleSheet.create({
   main: {
-    alignItems: 'center'
+    alignItems: "center",
   },
   tabBar: {
-    height: 100
-  }
-})
+    height: Platform.OS == 'ios' ? 100 : 75,
+  },
+});

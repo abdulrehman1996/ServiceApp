@@ -1,14 +1,16 @@
 import { Platform, StyleSheet } from "react-native";
+import {
+  Poppins_400Regular,
+  Poppins_600SemiBold,
+  Poppins_500Medium,
+  useFonts,
+} from "@expo-google-fonts/poppins";
 
 export const fonts = {
-  light:'PlusJakartaSans-Light',
-  regular: "PlusJakartaSans-Regular",
-  medium: "PlusJakartaSans-Medium",
-  bold: "PlusJakartaSans-Bold",
-  extrabold: "PlusJakartaSans-Bold",
-  semiBold:'PlusJakartaSans-SemiBold.ttf',
+  regular: "Poppins_400Regular",
+  medium: "Poppins_500Medium",
+  bold: "Poppins_600SemiBold",
 };
-
 
 // export const getFontFamily = (language: string) => {
 //   // if (language === "ar") return arFonts;
@@ -38,7 +40,7 @@ export const lineHeights = {
 
 export const shadowStyle = StyleSheet.create({
   shadow: {
-    shadowColor: 'rgba(127,136,144,.3)',
+    shadowColor: "rgba(127,136,144,.3)",
     shadowOffset: {
       height: 3,
       width: 0,
@@ -48,7 +50,7 @@ export const shadowStyle = StyleSheet.create({
     elevation: 1,
   },
   shadow4: {
-    shadowColor: '#000000',
+    shadowColor: "#000000",
     shadowOffset: {
       width: 0,
       height: 4,

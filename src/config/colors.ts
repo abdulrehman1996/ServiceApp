@@ -6,6 +6,7 @@ export const gray4 = "#80879A"; // second
 export const gray5 = "#1D2338"; // black
 export const gray6 = "#F6F8FB"; // gray6
 export const gray7 = "#ececec";
+export const gray8 = "#f5f5f5";
 export const black = "#000000";
 export const blue = "#0B69FF";
 // export const darkGreen = "#004c3f";

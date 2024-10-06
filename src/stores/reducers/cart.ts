@@ -28,12 +28,12 @@ const cart = createSlice({
       );
       if (existingItem) {
         existingItem.quantity += 1;
-        existingItem.totalPrice += action.payload.price;
+        existingItem.totalPrice += action.payload.pricing;
       } else {
         state.cartItems.push({
           item: action.payload,
           quantity: 1,
-          totalPrice: action.payload.price,
+          totalPrice: action.payload.pricing,
         });
       }
     },
@@ -43,7 +43,7 @@ const cart = createSlice({
       );
       if (cartItem) {
         cartItem.quantity += 1;
-        cartItem.totalPrice += cartItem.item.price;
+        cartItem.totalPrice += cartItem.item.pricing;
       }
     },
     decreaseQuantity: (state, action: PayloadAction<number>) => {
@@ -52,7 +52,7 @@ const cart = createSlice({
       );
       if (cartItem && cartItem.quantity > 1) {
         cartItem.quantity -= 1;
-        cartItem.totalPrice -= cartItem.item.price;
+        cartItem.totalPrice -= cartItem.item.pricing;
       } else {
         // Remove the item when quantity is 0
         state.cartItems = state.cartItems.filter(

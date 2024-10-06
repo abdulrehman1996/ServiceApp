@@ -1,8 +1,9 @@
 import { Text } from "@/components/text";
 import { addItemToCart } from "@/stores/reducers/cart";
 import { ThemeColors } from "@/types";
+import { HomeNavigationProps } from "@/types/navigation";
 import { wp } from "@/utils/dimensions";
-import { useTheme } from "@/utils/packages";
+import { useNavigation, useTheme } from "@/utils/packages";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
@@ -12,33 +13,36 @@ interface AllServicesRenderProps {
 }
 
 export interface ItemProps {
-    id: number,
-    price: number;
-    name: string;
-    image: string;
-    address: string;
-    timing: string;
-    distance: string;
-    free: boolean;
-    category: string;
-    ad: boolean
+    id?: number,
+    pricing?: number;
+    name?: string;
+    image?: string;
+    address?: string;
+    timing?: string[];
+    distance?: string;
+    free?: boolean;
+    category?: string;
+    ad?: boolean
 }
 
 const AllServicesRender = ({ item }: AllServicesRenderProps) => {
     const { name, image, address, timing, distance, free, category } = item;
     const { colors } = useTheme() as { colors: Partial<ThemeColors> };
     const dispatch = useDispatch();
+    const navigation = useNavigation<HomeNavigationProps | any>()
 
     return (
         <TouchableOpacity
             activeOpacity={.7}
-            onPress={() => dispatch(addItemToCart(item))}
+            onPress={() => navigation.navigate('ServiceDetail', { item })}
             style={{
                 width: wp(45),
                 marginTop: 15,
+                borderWidth: .2,
+                borderColor: colors.border,
                 backgroundColor: colors.background,
                 padding: 10,
-                borderRadius: 25,
+                borderRadius: 15,
             }}
         >
             <Image
@@ -46,7 +50,7 @@ const AllServicesRender = ({ item }: AllServicesRenderProps) => {
                 style={{
                     width: "100%",
                     height: wp(45),
-                    borderRadius: 15,
+                    borderRadius: 5,
                     overflow: "hidden",
                     justifyContent: "flex-end",
                     marginBottom: 10,
